@@ -38,8 +38,8 @@
     <th mat-header-cell *matHeaderCellDef>Acao</th>
     <td mat-cell *matCellDef="let data">
       <ng-container *ngIf="data.action">
-        Action
-        <!-- <span *ngIf="data.action.includes('action1')">mostra botao acao 1</span> -->
+        <!-- Verifica se a acao inclui acao1 -->
+        <span *ngIf="data.action.includes('action1')">mostra botao acao 1</span>
       </ng-container>
     </td>
   </ng-container>

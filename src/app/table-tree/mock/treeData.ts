@@ -81,7 +81,7 @@ export const TreeData: Account[] = [{
     id: 931231,
     name: "3.2 - Sócios",
     classification: "Distribuição de Lucros",
-    order: 1,
+    order: 2,
     dragAndDrop: false,
     children: [{
       id: 431329,

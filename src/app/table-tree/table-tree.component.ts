@@ -16,7 +16,7 @@ import { MatIcon } from "@angular/material/icon";
 
 import { TreeData } from './mock/treeData';
 import { Account } from './types/account';
-import { FlatNode } from './types/flatNode';
+import {FlatNode, FlatNodeState} from './types/flatNode';
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -135,8 +135,13 @@ export class TableTreeComponent {
 
   updateOrder(children: FlatNode[]) {
     children.forEach((child, index) => {
-      child.order = index + 1;
-      child.updated = true;
+      child['order'] = index + 1;
+      this.markItemState(child, FlatNodeState.updated);
     });
+  }
+
+  markItemState(item: FlatNode, state: FlatNodeState): FlatNode {
+    item['state'] = state;
+    return item;
   }
 }

@@ -5,8 +5,14 @@ export interface FlatNode {
   action?: string[];
   order?: number;
   dragAndDrop?: boolean;
-  updated?: boolean;
+  state?: FlatNodeState;
   expandable: boolean;
   level: number;
   children?: FlatNode[];
+}
+
+export enum FlatNodeState {
+  updated = 'updated',
+  created = 'created',
+  deleted = 'deleted'
 }
