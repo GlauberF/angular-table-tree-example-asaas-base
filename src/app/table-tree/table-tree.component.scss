@@ -6,3 +6,17 @@ table {
 th, tr, td {
   border-bottom: 1px solid #ccc;
 }
+
+.cdk-drag-preview {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  background-color: white;
+  th, tr, td {
+    border-bottom: 1px solid white;
+  }
+}
+
+.cdk-drag-placeholder {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px dashed #ccc;
+}

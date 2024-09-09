@@ -3,5 +3,9 @@ export interface FlatNode {
   name: string;
   classification?: string;
   action: any;
+  order: number;
   level: number;
+  dragAndDrop: boolean;
+  children?: FlatNode[];
+  updated?: boolean;
 }

@@ -4,4 +4,5 @@ export interface Account {
   action?: any;
   order?: number;
   children?: Account[];
+  dragAndDrop: boolean;
 }
