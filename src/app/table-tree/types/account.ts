@@ -1,8 +1,9 @@
 export interface Account {
+  id: number;
   name: string;
   classification?: string;
-  action?: any;
   order?: number;
+  action?: string[];
+  dragAndDrop?: boolean;
   children?: Account[];
-  dragAndDrop: boolean;
 }

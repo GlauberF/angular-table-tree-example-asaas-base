@@ -1,11 +1,12 @@
 export interface FlatNode {
-  expandable: boolean;
+  id: number;
   name: string;
   classification?: string;
-  action: any;
-  order: number;
-  level: number;
-  dragAndDrop: boolean;
-  children?: FlatNode[];
+  action?: string[];
+  order?: number;
+  dragAndDrop?: boolean;
   updated?: boolean;
+  expandable: boolean;
+  level: number;
+  children?: FlatNode[];
 }

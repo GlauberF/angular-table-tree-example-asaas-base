@@ -1,4 +1,5 @@
 <table mat-table
+       aria-describedby="Plano de contas"
        [dataSource]="dataSource"
        class="mat-elevation-z8"
        cdkDropList
@@ -10,37 +11,44 @@
       <span [style.paddingLeft.px]="40"> Descricao </span>
     </th>
     <td mat-cell *matCellDef="let data">
-      <button
-        mat-icon-button
-        [style.visibility]="!data.expandable ? 'hidden' : ''"
-        [style.marginLeft.px]="data.level * 32"
-        (click)="treeControl.toggle(data)"
-      >
-        <mat-icon class="mat-icon-rtl-mirror">
-          {{treeControl.isExpanded(data) ? 'expand_more' : 'chevron_right'}}
-        </mat-icon>
-      </button>
-
-      {{data.name}}
+      <div class="cell-content">
+        <button
+          mat-icon-button
+          [style.visibility]="!data.expandable ? 'hidden' : ''"
+          [style.marginLeft.px]="data.level * 32"
+          (click)="treeControl.toggle(data)"
+        >
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{ treeControl.isExpanded(data) ? 'expand_more' : 'chevron_right' }}
+          </mat-icon>
+        </button>
+        <span>{{ data.name }}</span>
+      </div>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="classification">
     <th mat-header-cell *matHeaderCellDef>Clasificacao</th>
     <td mat-cell *matCellDef="let data">
-      <span>{{data.classification}}</span>
+      <span>{{ data.classification }}</span>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef>Acao</th>
-    <td mat-cell *matCellDef="let data">{{data.action}}</td>
+    <td mat-cell *matCellDef="let data">
+      <ng-container *ngIf="data.action">
+        Action
+        <!-- <span *ngIf="data.action.includes('action1')">mostra botao acao 1</span> -->
+      </ng-container>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"
       cdkDrag
       [cdkDragData]="row"
+      [cdkDragDisabled]="!row.dragAndDrop"
       cdkDragPreviewClass="cdk-drag-preview"
       cdkDragPlaceholderClass="cdk-drag-placeholder">
   </tr>

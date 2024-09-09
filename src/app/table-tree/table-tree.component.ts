@@ -17,6 +17,7 @@ import { MatIcon } from "@angular/material/icon";
 import { TreeData } from './mock/treeData';
 import { Account } from './types/account';
 import { FlatNode } from './types/flatNode';
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-table-tree',
@@ -36,7 +37,8 @@ import { FlatNode } from './types/flatNode';
     MatRowDef,
     DragDropModule,
     CdkDropList,
-    CdkDrag
+    CdkDrag,
+    NgIf
   ],
   templateUrl: './table-tree.component.html',
   styleUrls: ['./table-tree.component.scss']
@@ -48,13 +50,14 @@ export class TableTreeComponent {
   private transformer = (node: Account, level: number): FlatNode => {
     return {
       expandable: !!node.children && node.children.length > 0,
+      id: node.id,
       name: node.name,
       classification: node.classification,
       action: node.action,
-      level: level,
+      level: level || 0,
       order: node.order || 0,
       children: <FlatNode[]>node?.children,
-      dragAndDrop: node.dragAndDrop
+      dragAndDrop: node.dragAndDrop || false
     };
   };
 
@@ -101,7 +104,7 @@ export class TableTreeComponent {
         this.updateOrder(children);
 
         // Preserve the expansion state
-        const expandedNodes = this.treeControl.expansionModel.selected.map(n => n.name);
+        const expandedNodes = this.treeControl.expansionModel.selected.map((n: FlatNode) => n.name);
         this.dataSource.data = [...this.dataSource.data]; // Trigger change detection
         this.treeControl.dataNodes.forEach(n => {
           if (expandedNodes.includes(n.name)) {
